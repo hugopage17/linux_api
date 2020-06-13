@@ -20,14 +20,6 @@ admin.initializeApp({
 })
 var db = admin.database()
 
-server.get('/', (req,res)=>{
-  fs.readFile('index.html', function(err, data) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(data);
-    return res.end();
-  });
-})
-
 server.get('/new', (req,res)=>{
   const id = req.query.id
   functions.new(id).then((r)=>{
@@ -94,19 +86,6 @@ server.post("/build", (req, res) => {
       }
     }, function (errorObject) {
       res.status(500).send('Error')
-    });
-  }catch(err){
-    res.status(404).send('Could not locate ID')
-  }
-})
-
-server.post("/logs", (req, res) => {
-  const body = req.body
-  try{
-    fs.appendFile('./logs.txt', body.msg, function (err) {
-      if (err) throw err;
-      console.log('log added');
-      res.status(201).send('log added')
     });
   }catch(err){
     res.status(404).send('Could not locate ID')
