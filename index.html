@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 id='h1'></h1>
+    <script type="text/javascript">
+      const h = 'hello'
+      const { readdirSync, statSync } = require('fs')
+      const { join } = require('path')
+      const dirs = p => readdirSync(p).filter(f => statSync(join(p, f)).isDirectory())
+      console.log(dirs);
+      document.getElementById('h1').innerText = h
+    </script>
+  </body>
+</html>
